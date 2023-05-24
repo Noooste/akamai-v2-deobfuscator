@@ -1,8 +1,8 @@
 package deobfuscator
 
 import (
+	"github.com/Noooste/go-utils"
 	"github.com/dop251/goja"
-	"gitlab.com/azureaio/utils"
 	"regexp"
 	"strings"
 	"sync"

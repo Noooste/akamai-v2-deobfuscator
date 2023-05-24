@@ -2,9 +2,8 @@ package deobfuscator
 
 import (
 	http "github.com/Noooste/fhttp"
+	"github.com/Noooste/go-utils"
 	"github.com/ditashi/jsbeautifier-go/jsbeautifier"
-	"gitlab.com/azureaio/utils"
-	"gitlab.com/azuresolution/azuretls"
 	"io/ioutil"
 	"log"
 	"os"
@@ -61,13 +60,8 @@ func TestScriptDeobRotateFunction(t *testing.T) {
 
 	var script []byte
 
-	if content, err := ioutil.ReadFile("input.js"); err != nil {
-		session := azuretls.NewSession()
-		var response, _ = session.Get("https://www.nike.com/i0uQKe/i/N/KJ-nQNbbL4VP/OmtOQ6wziX/YF1ZTmQpBw/aRgpW/xQkUns")
-		script = response.Body
-	} else {
-		script = content
-	}
+	var response, _ = http.Get("https://www.nike.com/h8r6ElR8B4Q6OG-YC53dZdAB1hU/7wacrNpthiat/RX44Qw/dT1rJV/RfAxY")
+	script = utils.GetResponseBody(response)
 
 	rf, _, _, _ := GetRotateFunction(script)
 
