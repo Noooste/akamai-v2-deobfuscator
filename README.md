@@ -55,7 +55,6 @@ func main() {
 	script := utils.GetResponseBody(response)
 
 	var id, order = deobfuscator.GetScriptInformation(script)
-	now := time.Since(start)
 
 	log.Println("script id : ", id)
 	log.Println("device data order :", order)
