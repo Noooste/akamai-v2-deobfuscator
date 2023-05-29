@@ -1,6 +1,7 @@
 # Akamai V2 Deobfuscator
 
 This project aims to reverse Akamai script obfuscation.
+THIS NOT STABLE AND NOT WORKING 100%
 
 ## Use
 
