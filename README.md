@@ -11,33 +11,16 @@ Deob script :
 import (
 	http "github.com/Noooste/fhttp"
 	"github.com/Noooste/go-utils"
-	"log"
+    "github.com/Noooste/akamai-v2-deobfuscator"
 	"os"
-	"regexp"
 )
 
 func main() {
-	var response, _ = http.Get("https://www.nike.com/h8r6ElR8B4Q6OG-YC53dZdAB1hU/7wacrNpthiat/RX44Qw/dT1rJV/RfAxY")
-	script := string(utils.GetResponseBody(response))
-
-	windowName := regexp.MustCompile(`(\w+)=window`).FindStringSubmatch(script)[1]
-
-	var err error
-	var v *Virtual
-	script, v, err = runMainFunction(script, true)
-	if err != nil {
-		log.Fatalf("Error: %s", err)
-	}
-
-	v.deobedScript = script
-
-	if err = v.deob(false); err != nil {
-		log.Fatalf("Error: %s", err)
-	}
-
-	script = CleanFinalScript(v.deobedScript, windowName, true)
-
-	_ = os.WriteFile("output.js", []byte(script), 0644)
+    var response, _ = http.Get("https://www.nike.com/h8r6ElR8B4Q6OG-YC53dZdAB1hU/7wacrNpthiat/RX44Qw/dT1rJV/RfAxY")
+    
+    script := deobfuscator.Deob(utils.GetResponseBody(response))
+    
+    _ = os.WriteFile("output.js", script, 0644)
 }
 ```
 

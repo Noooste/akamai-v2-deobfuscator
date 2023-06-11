@@ -3,6 +3,7 @@ package deobfuscator
 import (
 	"github.com/ditashi/jsbeautifier-go/jsbeautifier"
 	"github.com/dop251/goja"
+	"log"
 	"regexp"
 	"strings"
 	"sync"
@@ -21,6 +22,29 @@ func (v *Virtual) runInVm(str string) (goja.Value, error) {
 	v.lock.Lock()
 	defer v.lock.Unlock()
 	return v.vm.RunString(str)
+}
+
+func Deob(script []byte) []byte {
+	script = findAndReplaceScriptHashValue(script)
+
+	windowName := regexp.MustCompile(`(\w+)=window`).FindSubmatch(script)[1]
+
+	var err error
+	var v *Virtual
+	var scriptString string
+
+	scriptString, v, err = runMainFunction(string(script), true)
+	if err != nil {
+		log.Fatalf("Error: %s", err)
+	}
+
+	v.deobedScript = scriptString
+
+	if err = v.deob(false); err != nil {
+		log.Fatalf("Error: %s", err)
+	}
+
+	return []byte(CleanFinalScript(v.deobedScript, string(windowName), true))
 }
 
 func runMainFunction(script string, fast bool) (string, *Virtual, error) {

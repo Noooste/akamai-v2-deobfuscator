@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"regexp"
 	"runtime/debug"
 	"testing"
 	"time"
@@ -72,27 +71,9 @@ func TestScriptDeobRotateFunction(t *testing.T) {
 }
 
 func TestScriptDeob(t *testing.T) {
-	content, _ := os.ReadFile("input.js")
-	content = findAndReplaceScriptHashValue(content)
+	var response, _ = http.Get("https://www.nike.com/h8r6ElR8B4Q6OG-YC53dZdAB1hU/7wacrNpthiat/RX44Qw/dT1rJV/RfAxY")
 
-	var script = string(content)
+	script := Deob(utils.GetResponseBody(response))
 
-	windowName := regexp.MustCompile(`(\w+)=window`).FindStringSubmatch(script)[1]
-
-	var err error
-	var v *Virtual
-	script, v, err = runMainFunction(script, true)
-	if err != nil {
-		log.Fatalf("Error: %s", err)
-	}
-
-	v.deobedScript = script
-
-	if err = v.deob(false); err != nil {
-		log.Fatalf("Error: %s", err)
-	}
-
-	script = CleanFinalScript(v.deobedScript, windowName, true)
-
-	_ = os.WriteFile("output.js", []byte(script), 0644)
+	_ = os.WriteFile("output.js", script, 0644)
 }
