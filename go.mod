@@ -1,4 +1,4 @@
-module github.com/Noooste/akamai-v2-deobfusctor
+module github.com/Noooste/akamai-v2-deobfuscator
 
 go 1.19
 
