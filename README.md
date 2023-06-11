@@ -11,7 +11,7 @@ Deob script :
 import (
 	http "github.com/Noooste/fhttp"
 	"github.com/Noooste/go-utils"
-    "github.com/Noooste/akamai-v2-deobfuscator"
+    	"github.com/Noooste/akamai-v2-deobfuscator"
 	"os"
 )
 
