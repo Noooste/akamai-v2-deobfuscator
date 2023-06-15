@@ -7,7 +7,6 @@ require (
 	github.com/Noooste/go-utils v0.0.0-20230524084254-b1c5f3c8fb0b
 	github.com/ditashi/jsbeautifier-go v0.0.0-20141206144643-2520a8026a9c
 	github.com/dop251/goja v0.0.0-20230114103038-6eb401d70090
-	gitlab.com/azureaio/utils v1.2.0
 )
 
 require (
