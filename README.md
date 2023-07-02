@@ -8,6 +8,8 @@ THIS NOT STABLE AND NOT WORKING 100%
 Deob script :
 
 ```go
+package main
+
 import (
 	http "github.com/Noooste/fhttp"
 	"github.com/Noooste/go-utils"
@@ -26,6 +28,8 @@ func main() {
 
 Get script ID and DeviceData key order (only on dynamic scripts) : 
 ```go
+package main
+
 import (
 	"github.com/Noooste/akamai-v2-deobfuscator"
 	"github.com/Noooste/go-utils"
@@ -47,6 +51,8 @@ func main() {
 Get rotate function :
 
 ```go
+package main
+
 import (
 	"github.com/Noooste/akamai-v2-deobfuscator"
 	http "github.com/Noooste/fhttp"
