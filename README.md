@@ -1,6 +1,6 @@
 # Akamai V2 Deobfuscator
 
-### :warning: THIS PROJECT IS NOT STABLE AND NOT WORKING 100%. ONLY NEED TO BE USE AS EDUCATIONAL PURPOSE
+### :warning: THIS PROJECT IS NOT STABLE AND DOES NOT WORK AT 100%. IT SHOULD ONLY BE USED FOR EDUCATIONAL PURPOSES.
 This project aims to reverse Akamai script obfuscation.
 
 
