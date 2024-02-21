@@ -5,7 +5,6 @@ import (
 	http "github.com/Noooste/fhttp"
 	"github.com/Noooste/go-utils"
 	"github.com/ditashi/jsbeautifier-go/jsbeautifier"
-	"io/ioutil"
 	"log"
 	"os"
 	"runtime/debug"
@@ -16,7 +15,7 @@ import (
 func TestScriptId(t *testing.T) {
 	var script []byte
 
-	if content, err := ioutil.ReadFile("input.js"); err != nil {
+	if content, err := os.ReadFile("input.js"); err != nil {
 		var response, _ = http.Get("https://www.ihg.com/pjYhi/LLw3p/IAq-/-m5-/tv/X9YYbpGSaJS9/MngDAQ/dVogXDE/wRFA")
 		script = utils.GetResponseBody(response)
 	} else {
@@ -79,8 +78,9 @@ func TestScriptDeobRotateFunction(t *testing.T) {
 
 	var script []byte
 
-	var response, _ = http.Get("https://www.nike.com/h8r6ElR8B4Q6OG-YC53dZdAB1hU/7wacrNpthiat/RX44Qw/dT1rJV/RfAxY")
-	script = utils.GetResponseBody(response)
+	session := azuretls.NewSession()
+	var response, _ = session.Get("https://www.nike.com/h8r6ElR8B4Q6OG-YC53dZdAB1hU/7wacrNpthiat/RX44Qw/dT1rJV/RfAxY")
+	script = response.Body
 
 	rf, _, _, _ := GetRotateFunction(script)
 
@@ -100,7 +100,7 @@ func TestScriptDeobRotateFunctionInput(t *testing.T) {
 
 	var script []byte
 
-	if content, err := ioutil.ReadFile("input.js"); err != nil {
+	if content, err := os.ReadFile("input.js"); err != nil {
 		var response, err = http.Get("https://www.ihg.com/pjYhi/LLw3p/IAq-/-m5-/tv/X9YYbpGSaJS9/MngDAQ/dVogXDE/wRFA")
 		if err != nil {
 			log.Print(err)
